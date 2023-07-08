@@ -1,0 +1,51 @@
+.jumbotron {
+    width: 80vw;
+    padding: 2rem 1rem;
+    margin: 0 auto 2rem;
+    background-color: #000000;
+}
+
+.jumbotron h1,h2 {
+  font-family: blender-bold, "Roboto", sans-serif;
+  font-weight: bold;
+  color: #ff6600;
+}
+
+.jumbotron p {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.jumbotron a {
+  color: #ff6600;
+  text-decoration: none;
+  border-bottom: 2px solid #ff6600;
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+.jumbotron a:hover,
+.jumbotron a:focus {
+  border-bottom: 2px solid #ffffff;
+}
+
+.jumbotron ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron li::before {
+  content: "•";
+  color: #ff6600;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.jumbotron:nth-of-type(3) {
+  background-color: #212529;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+}

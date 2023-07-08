@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "css/ckeditor.css" %}" type="text/css">
+{% endblock %}
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container cp-bg p-3 text-white">
+        <h1 class="cp-h text-center">{{ object.title }}</h1>
+        <a class="cp-link-lg" href="{% url 'create_article' %}?section={{ object.pk }}">Create new article</a>
+        <div class="ck-content my-3">{{ object.description|safe }}</div>
+        {% if object.articles.exists %}
+            <h2 class="cp-h3">Articles</h2>
+            <div id="cp-hr"></div>
+            <div class="cp-list">
+                {% for article in object.articles.all %}
+                    {% if article.status == "published" %}
+                        <a class="cp-list-item" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if object.section_set.exists %}
+        <h2 class="cp-h3">Sections</h2>
+        <div id="cp-hr"></div>
+        <div class="cp-list">
+            {% for section in object.section_set.all %}
+                <a class="cp-list-item" href="{{ section.get_absolute_url }}">{{ section.title }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

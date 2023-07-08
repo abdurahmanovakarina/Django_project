@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Banned
+{% endblock %}
+
+{% block content %}
+    <div class="container text-white cp-bg py-3">
+        <h1 class="cp-h">Вы забанены!</h1>
+        <p>Вы не можете создавать статью или редактировать!</p>
+        <p>Чтобы обратно получить доступ отправьте своё письмо по данном адресу: example@example.ru</p>
+        <div class="text-end">
+            <a class="cp-link" href="{% url 'logout'%}">Выйти из системы</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,86 @@
+.cp-h {
+  color: #F8EF00;
+  font-family: blender-bold, sans-serif;
+}
+
+.cp-form {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cp-label {
+  font-family: blender-bold, sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.cp-input {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #4c4c4c;
+  border-radius: 5px;
+  font-size: 24px;
+  font-family: blender-bold, sans-serif;
+}
+
+.cp-input:focus {
+  border-color: #ffffff;
+  font-size: 24px;
+  box-shadow: none;
+}
+
+.cp-btn {
+  background-color: #F8EF00;
+  text-transform: uppercase;
+  font-family: blender-bold, sans-serif;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 25px!important;
+  color: #121212;
+  outline: transparent;
+  border: 0;
+  border-radius: 0;
+  height: 50px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 25px 100%, 0 50%);
+}
+
+.cp-btn:hover {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+#id_profile_picture {
+  color: #ffffff;
+  border: 2px solid #4c4c4c;
+  background-color: #121212;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 24px;
+  font-family: blender-bold, sans-serif;
+}
+
+#id_profile_picture:focus {
+  border-color: #ffffff;
+  box-shadow: none;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #F8EF00;
+  color: #121212;
+  border: 2px solid #4c4c4c;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 24px;
+  font-family: blender-bold, sans-serif;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+
+
+

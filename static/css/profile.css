@@ -1,0 +1,114 @@
+/* Стили для заголовков */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: #ccc;
+  font-size: 1.5rem;
+}
+
+/* Стили для ссылок */
+a {
+  color: #ff6600;
+  text-decoration: none;
+  border-bottom: 2px solid #ff6600;
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Стили для изображения */
+img {
+  display: block;
+  margin: 1rem 0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Стили для списка комментариев */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.media {
+  margin-bottom: 1rem;
+}
+
+li.media img {
+  margin-right: 1rem;
+}
+
+li.media h3 {
+  color: #ff6600;
+  margin-bottom: 0.5rem;
+}
+
+li.media p {
+  margin-bottom: 0.5rem;
+}
+
+li.media small {
+  color: #ccc;
+}
+
+/* Стили для формы комментариев */
+form {
+  margin-top: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #ccc;
+}
+
+input[type="text"],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #212529;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  background-color: #cc5200;
+}
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

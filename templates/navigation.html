@@ -1,0 +1,25 @@
+<footer>
+    <ul>
+        {% for section in section_tree %}
+        <li>
+            <a href="{% url "section_detail" pk=section.section.id %}">{{ section.section.title }}</a>
+            {% if section.subsections %}
+            <ul>
+                {% for subsection in section.subsections %}
+                <li>
+                    <a href="{% url "section_detail" pk=subsection.section.id %}">{{ subsection.section.title }}</a>
+                    {% if subsection.subsections %}
+                    <ul>
+                        {% for subsubsection in subsection.subsections %}
+                        <li><a href="{% url "section_detail" pk=subsubsection.section.id %}">{{ subsubsection.section.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</footer>

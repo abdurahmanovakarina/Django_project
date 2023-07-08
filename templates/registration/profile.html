@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ user.get_full_name }}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if request.user.is_staff and not is_owner %}
+            <div class="position-absolute bg-dark">
+                <h3>кнопки админа</h3>
+            </div>
+        {% endif %}
+        <section class="h-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-lg-9 col-xl-7">
+                        <div class="cp-card card">
+                            <div class="rounded-top text-white d-flex flex-row pl-3 cp-profile-header">
+                                {% if user.is_banned %}
+                                    <div class="cp-profile-header-banned text-center">
+                                        <h1>BANNED</h1>
+                                    </div>
+                                {% endif %}
+                                <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                                    {% if user.profile_picture %}
+                                        <img class="img-fluid cp-img mt-4 mb-2 cp-profile-picture"
+                                             src="{{ user.profile_picture.url }}" alt="{{ user.get_full_name }}">
+                                    {% else %}
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em" font-size="30px">{{ request.user.get_full_name|slice:":1"|upper }}</text></svg>
+                                    {% endif %}
+                                    <div class="d-flex flex-row" style="z-index: 1">
+                                        {% if is_owner %}
+                                        <a href="{% url 'update_profile' %}?next={{ request.path }}"
+                                           class="btn btn-outline-warning m-1 d-flex align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="{% url 'logout' %}?next={{ request.path }}"
+                                           class="btn btn-outline-danger m-1">Logout</a>
+                                        {% else %}
+                                            <a href="#"
+                                           class="btn btn-outline-secondary m-1">Follow</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="ms-3 pl-3" style="margin-top: 130px;">
+                                    <h5 class="cp-h">{{ user.get_full_name }}</h5>
+                                    <p>{{ user.email }}</p>
+                                </div>
+                            </div>
+                            <div class="p-4 text-white bg-dark">
+                                <div class="d-flex justify-content-end text-center py-1">
+                                    <div>
+                                        <p class="mb-1 h5">{{ articles_count }}</p>
+                                        <p class="small text-muted mb-0">Articles</p>
+                                    </div>
+    {#                                    <div class="px-3">#}
+    {#                                        <p class="mb-1 h5">1026</p>#}
+    {#                                        <p class="small text-muted mb-0">Followers</p>#}
+    {#                                    </div>#}
+    {#                                    <div>#}
+    {#                                        <p class="mb-1 h5">478</p>#}
+    {#                                        <p class="small text-muted mb-0">Following</p>#}
+    {#                                    </div>#}
+                                </div>
+                            </div>
+                            <div class="card-body p-4 text-white cp-bg">
+                                <h2 class="h4 cp-h3">Comments</h2>
+                                {% if not user.is_banned %}
+                                <form method="post" class="mb-3">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn btn-warning" id="cp-btn-sm">Post comment</button>
+                                </form>
+                                {% endif %}
+                                {% if form.errors %}
+                                    <div class="alert alert-danger mt-3">
+                                        <strong>Oops!</strong> There was an error submitting your comment.
+                                        <ul>
+                                            {% for field, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                    <li>{{ error }}</li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                {% if page_obj %}
+                                        {% for comment in page_obj %}
+                                            <div class="card bg-dark">
+                                            <div class="card-body">
+                                            <div class="d-flex flex-start align-items-center">
+                                                {% if comment.author.profile_picture %}
+                                                    <img class="rounded-circle shadow-1-strong me-3" src="{{ comment.author.profile_picture.url }}"
+                                                         alt="{{ comment.author.get_full_name }}" width="64">
+                                                {% else %}
+                                                    <div class="mr-3 bg-secondary text-white d-flex align-items-center justify-content-center"
+                                                         style="width: 64px; height: 64px;">
+                                                        <span class="h4 mb-0">No profile picture found.</span>
+                                                    </div>
+                                                {% endif %}
+                                                <div>
+                                                    <a class="cp-link text-decoration-none" href="{{ comment.author.get_absolut_url }}"><h6 class="fw-bold cp-h3 mb-1">{{ comment.author.get_full_name }}</h6></a>
+                                                    <p class="text-muted small mb-0">{{ comment.created_at }}</p>
+                                                </div>
+
+                                            </div>
+                                            </div>
+                                            <p class="m-3 mb-4 pb-2">{{ comment.text }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-end">
+                                            {% if page_obj.has_previous %}
+                                                <li class="page-item-">
+                                                    <a class="page-link" href="?page=1">&laquo; first</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_obj.previous_page_number }}">&lsaquo;
+                                                        prev</a>
+                                                </li>
+                                            {% endif %}
+
+                                            <li class="page-item active">
+                                                <span class="page-link">{{ page_obj.number }}</span>
+                                            </li>
+
+                                            {% if page_obj.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">next
+                                                        &rsaquo;</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                {% else %}
+                                    <p class="mt-2">No comments yet.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <section class="h-100">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center">
+                        <h1>Please log in</h1>
+                        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

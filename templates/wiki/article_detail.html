@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "css/ckeditor.css" %}" type="text/css">
+{% endblock %}
+{% block content %}
+  <div class="container cp-bg text-white">
+      {% if article.status == "draft" %}
+          <span class="position-absolute d-block text-info m-3 fw-bold">Не опубликовано</span>
+      {% endif %}
+      <h1 class="cp-h text-center">{{ article.title }}</h1>
+
+  <div class="row">
+  <div class="col-9">
+      <div class="card-body">
+          <p>Раздел: <a class="cp-link-lg" href="{{ article.section.get_absolute_url }}">{{ article.section.title }}</a></p>
+          <div class="card-text ck-content">{{ article.content|safe }}</div>
+      </div>
+  </div>
+  <div class="col-3 cp-sidebar">
+      <h3 class="cp-h3 text-center">{{ article.title }}</h3>
+      {% if article.main_photo %}
+      <img src="{{ article.main_photo.url }}" alt="{{ article.title }}" class="cp-img">
+      {% endif %}
+      {% if article.gallery_photos.exists %}
+        <p>Gallery photos:</p>
+        <ul>
+          {% for photo in article.gallery_photos.all %}
+            <li><img src="{{ photo.image.url }}" alt="{{ article.title }}"></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <p>Автор: {{ article.created_by }}</p>
+      <p>Дата публикации: {{ article.created_at }}</p>
+      {% if user.is_authenticated %}
+        <a class="cp-link-lg" href="{% url 'update_article' article.pk %}">Edit</a>
+      {% endif %}
+  </div>
+  </div>
+  </div>
+{% endblock %}
