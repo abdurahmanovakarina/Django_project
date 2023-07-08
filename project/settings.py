@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "wiki.middleware.NavbarFooterMiddleware",
 ]
 
-ROOT_URLCONF = "GrrxWiki.urls"
+ROOT_URLCONF = "project.urls"
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
@@ -81,7 +81,7 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-WSGI_APPLICATION = "GrrxWiki.wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
